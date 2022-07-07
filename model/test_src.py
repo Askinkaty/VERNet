@@ -59,6 +59,8 @@ def eval_model(model, validset_reader, args):
             score = score_tensor.contiguous().view(-1).tolist()
             predicts.extend(predict)
             labels.extend(score)
+            print(labels)
+            print(predict)
         results = eval_result(predicts, labels)
     return results
 
