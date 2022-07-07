@@ -20,7 +20,6 @@ class inference_model(nn.Module):
         self.proj_select_score = nn.Linear(self.bert_hidden_dim * 3, 1)
         self.proj_attention = nn.Linear(self.bert_hidden_dim, self.bert_hidden_dim)
 
-
     def attention_layer(self, inputs_hidden, select_score, mask_text, i):
         inputs_hidden1 = inputs_hidden[:, i, :, :]
         mask_text1 = mask_text[:, i, :, :]
@@ -46,7 +45,6 @@ class inference_model(nn.Module):
         verificcation_representation = torch.sum(inputs_hidden2 * select_score, 1)
         return verificcation_representation
 
-
     def select_layer(self, inputs_hidden, src_mask, hyp_mask):
         src_mask = src_mask.view(-1, self.max_len, 1)
         hyp_mask = hyp_mask.view(-1, self.max_len, 1)
@@ -64,13 +62,7 @@ class inference_model(nn.Module):
         hyp_representation = torch.sum(hyp_attention * inputs_hidden2, 1)
         select_score = self.proj_select_score(torch.cat([src_representation, hyp_representation, src_representation * hyp_representation], -1))
         select_score = select_score.view([-1, self.evi_num])
-
         return select_score
-
-
-
-
-
 
     def forward(self, inp_tensor, msk_tensor, seg_tensor, score_flag=True):
         inp_tensor = inp_tensor.view(-1, self.max_len)
