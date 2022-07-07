@@ -1,23 +1,24 @@
-python test.py --test_path ../data/fce \
---bert_pretrain bert-base-cased \
---checkpoint ../checkpoints/bert_model/model.best.pt
+#!/usr/bin/env bash
 
-python test.py --test_path ../data/conll14.0 \
---bert_pretrain bert-base-cased \
---checkpoint ../checkpoints/bert_model/model.best.pt
+#SBATCH --account=project_2002016
+#SBATCH --job-name=vernet
 
-python test.py --test_path ../data/conll14.1 \
---bert_pretrain bert-base-cased \
---checkpoint ../checkpoints/bert_model/model.best.pt
+#SBATCH --partition=gpu
 
-python test_src.py --test_path ../data/fce \
---bert_pretrain bert-base-cased \
---checkpoint ../checkpoints/bert_model/model.best.pt
+#SBATCH --cpus-per-task=10
+#SBATCH --mem=80G
+#SBATCH --ntasks=1
+#SBATCH --time=2:00:00
+#SBATCH --gres=gpu:v100:1
 
-python test_src.py --test_path ../data/conll14.0 \
---bert_pretrain bert-base-cased \
---checkpoint ../checkpoints/bert_model/model.best.pt
+module load gcc/8.3.0 cuda/10.1.168
 
-python test_src.py --test_path ../data/conll14.1 \
---bert_pretrain bert-base-cased \
---checkpoint ../checkpoints/bert_model/model.best.pt
+export DIR=/projappl/project_2002016/VERNet/model
+cd $DIR
+
+conda activate gpt
+
+srun python3 ./test.py --test_path /scratch/project_2002016/datasets/data-gec/vernet_data/test.jsonl --bert_pretrain sberbank-ai/ruBert-base --checkpoint ../vernet_model/model.best.pt
+
+#srun python3 ./test_src.py --test_path /scratch/project_2002016/datasets/data-gec/vernet_data/test.jsonl --bert_pretrain sberbank-ai/ruBert-base --checkpoint ../vernet_model/model.best.pt
+
