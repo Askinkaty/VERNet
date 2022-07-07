@@ -16,6 +16,6 @@ module load gcc/8.3.0 cuda/10.1.168
 export DIR=/projappl/project_2002016/VERNet/model
 cd $DIR
 
-conda activate vernet
+conda activate gpt
 
 srun python3 ./train.py --outdir ../vernet_model --train_path /scratch/project_2002016/datasets/data-gec/vernet_data/vtrain --valid_path /scratch/project_2002016/datasets/data-gec/vernet_data/vvalid --bert_pretrain sberbank-ai/ruBert-base
