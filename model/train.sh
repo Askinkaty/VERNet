@@ -13,7 +13,7 @@
 
 module load gcc/8.3.0 cuda/10.1.168
 
-export DIR=/projappl/project_2002016/VERNet
+export DIR=/projappl/project_2002016/VERNet/model
 cd $DIR
 
 conda activate vernet
