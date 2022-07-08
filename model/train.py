@@ -121,7 +121,7 @@ if __name__ == "__main__":
     parser.add_argument('--train_path', help='train path')
     parser.add_argument('--valid_path', help='valid path')
     parser.add_argument("--train_batch_size", default=4, type=int, help="Total batch size for training.")
-    parser.add_argument("--bert_hidden_dim", default=768, type=int, help="Total batch size for training.")
+    parser.add_argument("--bert_hidden_dim", default=1024, type=int, help="Total batch size for training.") # 768
     parser.add_argument("--valid_batch_size", default=4, type=int, help="Total batch size for predictions.")
     parser.add_argument('--outdir', required=True, help='path to output directory')
     parser.add_argument("--max_len", default=120, type=int,

@@ -18,4 +18,4 @@ cd $DIR
 
 conda activate gpt
 
-srun python3 ./train.py --outdir ../vernet_model --train_path /scratch/project_2002016/datasets/data-gec/vernet_data/vtrain --valid_path /scratch/project_2002016/datasets/data-gec/vernet_data/vvalid --bert_pretrain sberbank-ai/ruBert-large
+srun python3 ./train.py --outdir ../vernet_model --train_path /scratch/project_2002016/datasets/data-gec/vernet_data/vtrain --valid_path /scratch/project_2002016/datasets/data-gec/vernet_data/vvalid --bert_pretrain sberbank-ai/ruBert-large --bert_hidden_dim 1024
