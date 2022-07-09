@@ -67,7 +67,7 @@ if __name__ == "__main__":
     parser.add_argument("--batch_size", default=16, type=int, help="Total batch size for training.")
     parser.add_argument('--bert_pretrain', required=True)
     parser.add_argument('--checkpoint', required=True)
-    parser.add_argument("--bert_hidden_dim", default=768, type=int, help="Total batch size for training.")
+    parser.add_argument("--bert_hidden_dim", default=1024, type=int, help="Total batch size for training.")
     parser.add_argument("--evi_num", default=5, type=int,
                         help="evidence number")
     parser.add_argument("--max_len", default=120, type=int,
