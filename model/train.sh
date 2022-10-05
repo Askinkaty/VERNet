@@ -5,10 +5,10 @@
 
 #SBATCH --partition=gpu
 
-#SBATCH --cpus-per-task=10
-#SBATCH --mem=80G
+#SBATCH --cpus-per-task=2
+#SBATCH --mem=50G
 #SBATCH --ntasks=1
-#SBATCH --time=2:00:00
+#SBATCH --time=1:00:00
 #SBATCH --gres=gpu:v100:1
 
 module load gcc/8.3.0 cuda/10.1.168
@@ -18,4 +18,4 @@ cd $DIR
 
 conda activate gpt
 
-srun python3 ./train.py --outdir ../vernet_model --train_path /scratch/project_2002016/datasets/data-gec/vernet_data/vtrain --valid_path /scratch/project_2002016/datasets/data-gec/vernet_data/vvalid --bert_pretrain sberbank-ai/ruBert-large --bert_hidden_dim 1024
+srun python3 ./train.py --outdir /scratch/project_2002016/vernet_model --train_path /scratch/project_2002016/datasets/data-gec/vernet_data/vtrain --valid_path /scratch/project_2002016/datasets/data-gec/vernet_data/vvalid --bert_pretrain sberbank-ai/ruBert-base --bert_hidden_dim 768
